@@ -9,26 +9,25 @@ import java.util.*;
 
 public class MaxHeap<T extends Comparable<T>>{
     private int size;
-    private T array[];
+    private ArrayList<T> heap;
     MaxHeap(T array[]) {
         this.size = array.length;
-        this.array =  (T[])new Comparable[this.size];
+        this.heap =  new ArrayList<>();
         for (int i = 0; i < array.length; i++) {
-            this.array[i] = array[i];
+            this.heap.add(array[i]);
         }
-        buildMaxHeap(this.array);
+        buildMaxHeap();
     }
 
     /**
      * 
      * Build the max heap from the bottom up
-     * floor(array.length/2) is the parent of the last 2 nodes
+     * floor(heap.length/2) is the parent of the last 2 nodes
      * 
-     * @param array
      */
-    private void buildMaxHeap(T array[]) {
-        for (int i = array.length / 2; i >= 0; i--) {
-            maxHeapify(array, i);
+    private void buildMaxHeap() {
+        for (int i = this.heap.size() / 2; i >= 0; i--) {
+            maxHeapify(i);
         }
     }
 
@@ -37,32 +36,48 @@ public class MaxHeap<T extends Comparable<T>>{
      * Makes the subtree rooted at index i obey the max-heap property (all parents are greater than their children)
      * Floats the value at index down until it finds the place it belongs
      * 
-     * @param array
      * @param index
      */
-    private void maxHeapify(T array[], int index) {
+    private void maxHeapify(int index) {
         int left = left(index);
         int right = right(index);
         int largest = index;
-        if (left < this.size && array[left].compareTo(array[largest]) == 1) {
+        if (left < this.heap.size() && this.heap.get(left).compareTo(this.heap.get(largest)) == 1) {
             // left is the largest value
             largest = left;
         } 
-        if (right < this.size && array[right].compareTo(array[largest]) == 1) {
+        if (right < this.heap.size() && this.heap.get(right).compareTo(this.heap.get(largest)) == 1) {
             // right is the largest value
             largest = right;
         }
         if (largest != index) {
-            T temp = array[index];
-            array[index] = array[largest];
+            T temp = this.heap.get(index);
+            this.heap.set(index, this.heap.get(largest));
             if (largest == left) {
-                array[left] = temp;
+                this.heap.set(left, temp);
             } else {
-                array[right] = temp;
+                this.heap.set(right, temp);
             }
-            maxHeapify(array, largest);
+            maxHeapify(largest);
         }
         
+    }
+
+    public void insert(T element) {
+        this.size++;
+        this.heap.add(element);
+        int index = this.heap.size() - 1;
+        while (index > 0 && this.heap.get(parent(index)).compareTo(this.heap.get(index)) == -1) {
+            // Swap with parent
+            T temp = this.heap.get(parent(index));
+            this.heap.set(parent(index), this.heap.get(index));
+            this.heap.set(index, temp);
+            index = parent(index);
+        }
+    }
+
+    public void delete(T element) {
+
     }
 
     /**
@@ -93,14 +108,19 @@ public class MaxHeap<T extends Comparable<T>>{
     }
 
     public void print() {
-        for (int i = 0; i < this.size; i++) {
-            System.out.print(this.array[i] + " ");
+        for (int i = 0; i < this.heap.size(); i++) {
+            System.out.print(this.heap.get(i) + " ");
         }
+        System.out.println();
     }
 
     public static void main(String[] args) {
         Integer data[] = { 4, 2, 5, 1, 6, 10, 22, 13, 14 };
         MaxHeap<Integer> maxHeap = new MaxHeap(data);
+        maxHeap.print();
+        maxHeap.insert(25);
+        maxHeap.print();
+        maxHeap.insert(0);
         maxHeap.print();
     }
 }
