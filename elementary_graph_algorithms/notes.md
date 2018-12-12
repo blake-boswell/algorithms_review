@@ -1,5 +1,5 @@
-#Elementary Graph Algorithms
-##Breadth-first Search
+# Elementary Graph Algorithms
+## Breadth-first Search
 - Given a graph G and a source vertex s:
 - explore the edges to discover every vertex reachable from s
 - For any vertex v reachable from s, the simple path in the bfs tree from s to v is a "shortest path" from s to v in G
@@ -32,7 +32,7 @@ runtime: O(V + E)
 
 - Useful for finding shortest paths
 
-##Depth-first Search
+## Depth-first Search
 - Search all edges coming from the most recently explored vertex
 - Backtrack
 - Use a stack or recursion stack
@@ -44,11 +44,11 @@ runtime: O(V + E)
     - finished (black)
 - Can keep "timestamps" of order that it was first discovered (v.start, set v to grey) and when the search on v is finished (v.fin, set v to black)
 
-###Properties of DFS
+### Properties of DFS
 - Discovery and finish times yeild a parenthesis structure
     - Discovery of u => (u; Finish u => u);
 
-###Classification of Edges
+### Classification of Edges
 - Type of edge provides info
     - EX: Directed graph is acyclic if there is NO back edges
     - EX: A back edge denotes a cycle
@@ -67,7 +67,7 @@ runtime: O(V + E)
     - GREY => back edge
     - BLACK => forward or cross edge
 
-##Topological Sort
+## Topological Sort
 A linear ordering of all vertices in a DAG such that if graph G contains an edge (u,v), then u appears before v in the ordering
 
 TOPOLOGICAL-SORT(G):

@@ -1,4 +1,4 @@
-#Insertion
+# Insertion
 Let z be the node to be inserted.
 After insertion, while z.p == red:
 
@@ -24,4 +24,4 @@ EX:
 - Insert 4: case 1
 - Insert 3: case 2, then case 3
 
-#Deletion
+# Deletion

@@ -44,3 +44,16 @@ runtime: THETA(d(n + k))
 ## Bucket Sort
 - Assumes input is drawn from a uniform distribution
 - Input is uniformly and independently distributed across the interval [0,1)
+
+BUCKET-SORT(A):
+    let B[0..n-1] be a new array
+    n = A.len
+    for i = 0 to n:
+        B[i] = new empty list
+    for i = 1 to n:
+        B[FLOOR(n*A[i])].add(A[i])
+    for i = 0 to n -1:
+        sort B[i] with insertion sort
+    concatenate B[0], B[1],.., B[n-1] together
+
+runtime: THETA(n)
