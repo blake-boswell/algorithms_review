@@ -174,6 +174,7 @@ If graph G contains a path from i to j for all vertex pairs i,j in G.V
     -> add the edge to E*
 - Use Floyd-Warshall, and assign the weight of 1 to ea. edge of E
     - W = {1,1,1,1,...}
+- If there is a path from i to j D[i][j] < n, else D[i][j] = infinity
 
 ## Johnson's Algorithm
 - Much better for sparse graphs than Floyd-Warshall

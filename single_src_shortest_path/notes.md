@@ -1,5 +1,5 @@
-#Single Source Shortest Path
-##Properties
+# Single Source Shortest Path
+## Properties
 - Shortest path weight d(u, v)
 
 d(u, v):
@@ -17,17 +17,17 @@ Varaints of single-sourc shortest path:
     - find shortest path from u to v for ea pair of vertices u and v
     - Can be solved by running single-source from ea. vertex
 
-###Optimal Structure of a Shortest Path
+### Optimal Structure of a Shortest Path
 - Subpaths of shortest paths are shortest paths
 
-###Negative-weight Edges
+### Negative-weight Edges
 - Negative weight cycles in G make the graph not well-defined
 
-###Cycles
+### Cycles
 - Shortest paths cannot contain a cycle
 - Removing cycle produces a shorter path between 2 vertices
 
-###Representing Shortest Paths
+### Representing Shortest Paths
 - Maintain a predecessor for each vertex v (v.p)
 - Predecessors may not actually indicate shortest paths
 - Interested in the predecessor subgraph induced by the v.p values
@@ -37,7 +37,7 @@ Shortest Path tree rooted at s is a directed subgraph G' = (V', E')
 2. G' forms a rooted tree with root s
 3. For ea. v in V', the simple path from s to v in G' is a shortest path from s to v in G
 
-###Relaxation
+### Relaxation
 v.d is an estimate of the shortest path from source s to v
 
 INIT-SINGLE-SRC(G,s):
@@ -57,7 +57,7 @@ RELAX(u,v,w):
 
 runtime: O(1) for relax on one edge
 
-##Bellman-Ford
+## Bellman-Ford
 - Relax ea. edge |V| - 1 times
 - Edges may be negative
 - Returns whether or not there is a negative-weight cycle that is reachable from the source
@@ -76,7 +76,7 @@ Bellman-Ford(G,w,s):
 
 runtime: O(VE)
 
-##Single-src shortest paths in a DAG
+## Single-src shortest paths in a DAG
 - Can compute shortest paths from a single source in THETA(V+E) after a topological sort
 
 DAG-SHORTEST-PATHS(G,w,s):
@@ -88,7 +88,7 @@ DAG-SHORTEST-PATHS(G,w,s):
 
 runtime: THETA(V+E)
 
-##Dijkstra's
+## Dijkstra's
 - Greedy algorithm
 - All edge weights are nonegative
 - Relax ea. edge exactly one time
